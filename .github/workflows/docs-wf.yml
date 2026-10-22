@@ -31,6 +31,14 @@ jobs:
           cp docs/pytket-docs-theming/pyproject.toml docs
           cp docs/pytket-docs-theming/uv.lock docs
       - name: Install docs dependencies
+        # Use the upstream pkg_resources fix until googleanalytics releases it:
+        # https://github.com/sphinx-contrib/googleanalytics/pull/22
+        run: >-
+          uv add --directory docs --python 3.12
+          'sphinxcontrib-googleanalytics @ git+https://github.com/sphinx-contrib/googleanalytics@4ae0adf4e9b8a0fd0f97dc90ffdf2e7e49c4c13e'
+          'setuptools>=83' 'certifi>=2026.10.19' 'filelock>=4.2.1'
+      - name: Build docs
+        working-directory: docs
         run: |
           source .venv/bin/activate
           uv pip install .
