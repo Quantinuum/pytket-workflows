@@ -38,7 +38,6 @@ jobs:
           'sphinxcontrib-googleanalytics @ git+https://github.com/sphinx-contrib/googleanalytics@4ae0adf4e9b8a0fd0f97dc90ffdf2e7e49c4c13e'
           'setuptools>=83' 'certifi>=2026.10.19' 'filelock>=4.2.1'
       - name: Build docs
-        working-directory: docs
         run: |
           source .venv/bin/activate
           uv pip install .
